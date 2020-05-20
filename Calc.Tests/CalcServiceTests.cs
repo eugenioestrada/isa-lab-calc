@@ -20,6 +20,17 @@ namespace Calc.Tests
         }
 
         [Theory]
+        [InlineData(1.0, 1.0, 2.0)]
+        [InlineData(1.5, -1.0, 0.5)]
+        [InlineData(-4.0, -5.0, -9.0)]
+        [InlineData(-3.0, 1.4, -1.6)]
+        public void SumarDoubleTest(double operando1, double operando2, double resultadoEsperado)
+        {
+            double resultado = calcService.Sumar(operando1, operando2);
+            Assert.Equal(resultado, resultadoEsperado);
+        }
+
+        [Theory]
         [InlineData(1, 1, 0)]
         [InlineData(2, -2, 4)]
         [InlineData(-10, 2, -12)]
@@ -27,6 +38,17 @@ namespace Calc.Tests
         public void RestarTest(int operando1, int operando2, int resultadoEsperado)
         {
             int resultado = calcService.Restar(operando1, operando2);
+            Assert.Equal(resultado, resultadoEsperado);
+        }
+
+        [Theory]
+        [InlineData(1.0, 1.0, 0.0)]
+        [InlineData(1.5, -1.0, 2.5)]
+        [InlineData(-4.0, -5.0, 1.0)]
+        [InlineData(-3.0, 1.4, -4.4)]
+        public void RestarDoubleTest(double operando1, double operando2, double resultadoEsperado)
+        {
+            double resultado = calcService.Restar(operando1, operando2);
             Assert.Equal(resultado, resultadoEsperado);
         }
 
@@ -43,6 +65,17 @@ namespace Calc.Tests
             Assert.Equal(resultadoEsperado, resultado);
         }
 
+        [Theory]
+        [InlineData(1.0, 1.0, 1.0)]
+        [InlineData(3.0, -2.0, -1.5)]
+        [InlineData(-4.0, -2.0, 2.0)]
+        [InlineData(-6.0, 2.0, -3.0)]
+        public void DividirDoubleTest(double dividendo, double divisor, double resultadoEsperado)
+        {
+            double resultado = calcService.Dividir(dividendo, divisor);
+            Assert.Equal(resultado, resultadoEsperado);
+        }
+
         [Fact]
         public void DivisionEntreCeroTest()
         {
@@ -50,6 +83,21 @@ namespace Calc.Tests
             try
             {
                 calcService.Dividir(5, 0);
+            }
+            catch (DivideByZeroException)
+            {
+                haFallado = true;
+            }
+            Assert.True(haFallado);
+        }
+
+        [Fact]
+        public void DivisionDoubleEntreCeroTest()
+        {
+            bool haFallado = false;
+            try
+            {
+                calcService.Dividir(5.0, 0);
             }
             catch (DivideByZeroException)
             {
@@ -70,6 +118,19 @@ namespace Calc.Tests
         public void MultiplicarTest(int multiplicando, int multiplicador, int resultadoEsperado)
         {
             int resultado = calcService.Multiplicar(multiplicando, multiplicador);
+            Assert.Equal(resultadoEsperado, resultado);
+        }
+
+        [Theory]
+        [InlineData(1.0, 1.0, 1.0)]
+        [InlineData(3.0, -2.0, -6.0)]
+        [InlineData(-4.0, -2.0, 8.0)]
+        [InlineData(-6.0, 2.0, -12.0)]
+        [InlineData(5.0, 0.0, 0.0)]
+        [InlineData(-2.0, 0.0, 0.0)]
+        public void MultiplicarDoubleTest(double multiplicando, double multiplicador, double resultadoEsperado)
+        {
+            double resultado = calcService.Multiplicar(multiplicando, multiplicador);
             Assert.Equal(resultadoEsperado, resultado);
         }
 
