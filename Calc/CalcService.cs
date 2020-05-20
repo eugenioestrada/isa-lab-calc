@@ -4,26 +4,12 @@ namespace Calc
 {
     public class CalcService
     {
-        public int Sumar(int operando1, int operando2)
-        {
-            return operando1 + operando2;
-        }
-
-        public double Sumar(double operando1, double operando2)
-        {
-            return operando1 + operando2;
-        }
-
-        public int Restar(int operando1, int operando2)
-        {
-            return operando1 - operando2;
-        }
-
-        public double Restar(double operando1, double operando2)
-        {
-            return operando1 - operando2;
-        }
-
+        public int Sumar(int operando1, int operando2) => operando1 + operando2;
+        public double Sumar(double operando1, double operando2) => operando1 + operando2;
+        public int Restar(int operando1, int operando2) => operando1 - operando2;
+        public double Restar(double operando1, double operando2) => operando1 - operando2;
+        public int Multiplicar(int multiplicando, int multiplicador) => multiplicando * multiplicador;
+        public double Multiplicar(double multiplicando, double multiplicador) => multiplicando * multiplicador;
         public int Dividir(int dividendo, int divisor)
         {
             if (divisor == 0)
@@ -33,7 +19,6 @@ namespace Calc
 
             return dividendo / divisor;
         }
-
         public double Dividir(double dividendo, double divisor)
         {
             if (divisor == 0)
@@ -43,17 +28,6 @@ namespace Calc
 
             return dividendo / divisor;
         }
-
-        public int Multiplicar(int multiplicando, int multiplicador)
-        {
-            return multiplicando * multiplicador;
-        }
-
-        public double Multiplicar(double multiplicando, double multiplicador)
-        {
-            return multiplicando * multiplicador;
-        }
-
         public double RaizCuadrada(int numero)
         {
             if (numero < 0)
