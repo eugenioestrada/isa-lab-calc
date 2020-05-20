@@ -42,5 +42,69 @@ namespace Calc.Tests
             int resultado = calcService.Dividir(dividendo, divisor);
             Assert.Equal(resultadoEsperado, resultado);
         }
+
+        [Fact]
+        public void DivisionEntreCeroTest()
+        {
+            bool haFallado = false;
+            try
+            {
+                calcService.Dividir(5, 0);
+            }
+            catch (DivideByZeroException)
+            {
+                haFallado = true;
+            }
+            Assert.True(haFallado);
+        }
+
+        [Theory]
+        [InlineData(1, 1, 1)]
+        [InlineData(5, 2, 10)]
+        [InlineData(9, 3, 27)]
+        [InlineData(-9, 3, -27)]
+        [InlineData(-4, -2, 8)]
+        [InlineData(25, -5, -125)]
+        [InlineData(5, 0, 0)]
+        [InlineData(-2, 0, 0)]
+        public void MultiplicarTest(int multiplicando, int multiplicador, int resultadoEsperado)
+        {
+            int resultado = calcService.Multiplicar(multiplicando, multiplicador);
+            Assert.Equal(resultadoEsperado, resultado);
+        }
+
+        [Theory]
+        [InlineData(9)]
+        [InlineData(10)]
+        [InlineData(5)]
+        [InlineData(1000)]
+        [InlineData(1)]
+        [InlineData(0)]
+        [InlineData(int.MaxValue)]
+        public void RaizCuadrada(int numero)
+        {
+            double resultadoEsperado = Math.Sqrt(numero);
+            double resultado = calcService.RaizCuadrada(numero);
+            double error = resultadoEsperado > resultado ?
+                            resultadoEsperado - resultado :
+                            resultado - resultadoEsperado;
+
+            Assert.True(error <= 1e-5);;
+        }
+
+        [Fact]
+        public void RaizCuadradaDeNegativo()
+        {
+            bool haFallado = false;
+            try
+            {
+                calcService.RaizCuadrada(-1);
+            }
+            catch (Exception)
+            {
+                haFallado = true;
+            }
+            Assert.True(haFallado);
+        }
     }
 }
