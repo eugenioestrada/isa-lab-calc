@@ -1,10 +1,13 @@
 using System;
 using Xunit;
+using Calc;
 
 namespace Calc.Tests
 {
     public class CalcServiceTests
     {
+        private readonly CalcService calcService = new CalcService(); 
+
         [Theory]
         [InlineData(1, 1, 2)]
         [InlineData(2, -2, 0)]
@@ -12,8 +15,7 @@ namespace Calc.Tests
         [InlineData(-8, -4, -12)]
         public void SumarTest(int operando1, int operando2, int resultadoEsperado)
         {
-            var calc = new Calc.CalcService();
-            int resultado = calc.Sumar(operando1, operando2);
+            int resultado = calcService.Sumar(operando1, operando2);
             Assert.Equal(resultado, resultadoEsperado);
         }
 
@@ -24,11 +26,21 @@ namespace Calc.Tests
         [InlineData(-8, -4, -4)]
         public void RestarTest(int operando1, int operando2, int resultadoEsperado)
         {
-            var calc = new Calc.CalcService();
-            int resultado = calc.Restar(operando1, operando2);
+            int resultado = calcService.Restar(operando1, operando2);
             Assert.Equal(resultado, resultadoEsperado);
         }
 
-        
+        [Theory]
+        [InlineData(1, 1, 1)]
+        [InlineData(5, 2, 2)]
+        [InlineData(9, 3, 3)]
+        [InlineData(-9, 3, -3)]
+        [InlineData(-4, -2, 2)]
+        [InlineData(25, -5, -5)]
+        public void DividirTest(int dividendo, int divisor, int resultadoEsperado)
+        {
+            int resultado = calcService.Dividir(dividendo, divisor);
+            Assert.Equal(resultadoEsperado, resultado);
+        }
     }
 }
