@@ -8,5 +8,10 @@ namespace Calc
         {
             return operando1 + operando2;
         }
+
+        public int Restar(int operando1, int operando2)
+        {
+            return operando1 - operando2;
+        }
     }
 }
