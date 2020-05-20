@@ -18,5 +18,10 @@ namespace Calc
         {
             return dividendo / divisor;
         }
+
+        public int Multiplicar(int multiplicando, int multiplicador)
+        {
+            return multiplicando * multiplicador;
+        }
     }
 }
