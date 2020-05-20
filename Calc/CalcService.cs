@@ -13,5 +13,10 @@ namespace Calc
         {
             return operando1 - operando2;
         }
+
+        public int Dividir(int dividendo, int divisor)
+        {
+            return dividendo / divisor;
+        }
     }
 }
